@@ -1,0 +1,47 @@
+<div class="header">
+    <div class="title">
+        {% if icon %}
+            {{ icon | raw }}
+        {% else %}
+        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#005f6b">
+            <path d="M120-513.33V-840h326.67v326.67H120ZM120-120v-326.67h326.67V-120H120Zm393.33-393.33V-840H840v326.67H513.33Zm0 393.33v-326.67H840V-120H513.33ZM186.67-580H380v-193.33H186.67V-580ZM580-580h193.33v-193.33H580V-580Zm0 393.33h193.33V-380H580v193.33Zm-393.33 0H380V-380H186.67v193.33ZM580-580Zm0 200Zm-200 0Zm0-200Z"/>
+        </svg>
+        {% endif %}
+        <h1>{{ post.title }}</h1>
+    </div>
+    <div class="user">
+        <div class="dropdown">
+            <div class="dropdown-btn flex justify-space-between items-center gap-2">
+                <span class="name">
+                    <a href="{{ account_page }}">
+                        {{ display_name }}
+                    </a>
+                    <span class="role">
+                        <a href="{{ account_page }}">
+                            {{ role_name }}
+                        </a>
+                    </span>
+                </span>
+                <span class="picture">
+                    <a href="{{ account_page }}">
+                        {{ avatar | raw }}
+                    </a>
+                </span>
+                <i class="arrow"></i>
+            </div>
+            <div class="dropdown-content">
+                <a href="{{ account_page }}">
+                    {{ __('Account') }}
+                </a>
+                <hr>
+                <a href="{{ sign_out_link }}">
+                    <span class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#005F6B"><path d="M216-144q-29.7 0-50.85-21.15Q144-186.3 144-216v-528q0-29.7 21.15-50.85Q186.3-816 216-816h264v72H216v528h264v72H216Zm432-168-51-51 81-81H384v-72h294l-81-81 51-51 168 168-168 168Z"/></svg>
+                    &nbsp;
+                    {{ __('Sign out') }}
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

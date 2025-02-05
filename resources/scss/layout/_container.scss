@@ -1,0 +1,18 @@
+//==================================================================
+// CONTAINER
+//==================================================================
+@use '../helpers/variables';
+@use '../helpers/mixins';
+
+.container {
+    width: 100%;
+    @include mixins.set-container;
+    margin-left: auto;
+    margin-right: auto;
+    &-lg {
+        @include mixins.set-container(variables.$container-lg-width)
+    }
+}
+
+@include mixins.generate-flex-grid-utilities();
+

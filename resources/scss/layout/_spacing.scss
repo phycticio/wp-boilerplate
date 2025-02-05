@@ -1,0 +1,4 @@
+@use '../helpers/mixins';
+
+@include mixins.generate-spacing-classes('margin', 'm');
+@include mixins.generate-spacing-classes('padding', 'p');

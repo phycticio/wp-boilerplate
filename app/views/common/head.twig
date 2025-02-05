@@ -1,0 +1,78 @@
+<!doctype html>
+<html {{ site.language_attributes }} class="no-js">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta charset="{{ site.charset }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="pingback" href="{{ site.pingback_url }}" />
+	<title>{{ site.title }} - {{ title }}</title>
+	<meta name="description" content="{{ site.description }}">
+
+	{# DNS Prefetch #}
+	<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+	<link rel="dns-prefetch" href="https://maps.googleapis.com">
+	<link rel="dns-prefetch" href="https://www.google-analytics.com">
+	<link rel="dns-prefetch" href="https://www.googleadservices.com">
+	<link rel="dns-prefetch" href="https://googleads.g.doubleclick.net">
+	<link rel="dns-prefetch" href="https://www.googleadservices.com">
+	<link rel="dns-prefetch" href="https://connect.facebook.net">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://use.typekit.net">
+	<link rel="preconnect" href="https://www.googletagmanager.com">
+	<link rel="preconnect" href="https://www.google-analytics.com">
+
+	{{ function('wp_head') }}
+
+	<link rel="icon" type="image/png" href="{{ site.favicon }}" sizes="32x32">
+
+	{# Outdated Browser Service CSS #}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css"
+          integrity="sha256-KNfTksp/+PcmJJ0owdo8yBLi/SVMQrH/PNPm25nR/pI=" crossorigin="anonymous"/>
+
+	{# No JS #}
+	<script type="text/javascript">
+			var htmlTag = document.querySelector('html');
+			htmlTag.classList.toggle('no-js');
+			htmlTag.classList.toggle('js');
+			htmlTag.classList.add('no-fonts');
+	</script>
+
+	{% if GTM_KEY %}
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+					w[l] = w[l] || [];
+					w[l].push({
+							'gtm.start':
+									new Date().getTime(), event: 'gtm.js'
+					});
+					var f = d.getElementsByTagName(s)[0],
+							j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+					j.async = true;
+					j.src =
+							'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+					f.parentNode.insertBefore(j, f);
+			})(window, document, 'script', 'dataLayer', 'GTM-{{ GTM_KEY }}');
+		</script>
+		<!-- End Google Tag Manager -->
+	{% endif %}
+
+	{% if MARKER_ID %}
+		{# Marker.io snippet #}
+		<script>
+			window.markerConfig = {
+				destination: '{{ MARKER_ID }}', 
+				source: 'snippet'
+			};
+		</script>
+
+		<script>
+		!function(e,r,a){if(!e.__Marker){e.__Marker={};var t=[],n={__cs:t};["show","hide","isVisible","capture","cancelCapture","unload","reload","isExtensionInstalled","setReporter","setCustomData","on","off"].forEach(function(e){n[e]=function(){var r=Array.prototype.slice.call(arguments);r.unshift(e),t.push(r)}}),e.Marker=n;var s=r.createElement("script");s.async=1,s.src="https://edge.marker.io/latest/shim.js";var i=r.getElementsByTagName("script")[0];i.parentNode.insertBefore(s,i)}}(window,document);
+		</script>
+		{# End Marker.io snippet #}
+	{% endif %}
+
+</head>

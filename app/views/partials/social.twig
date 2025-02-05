@@ -1,0 +1,7 @@
+<div class="footer__social_networks">
+    {% for network in networks %}
+        <a href="{{ network.social_network_url }}" title="{{ network.social_network_name }}">
+            <img src="{{ network.social_network_icon.sizes.large }}" alt="{{ network.social_network_name }} Icon">
+        </a>
+    {% endfor %}
+</div>

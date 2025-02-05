@@ -1,0 +1,14 @@
+<div class="header--call_to_action">
+    <div class="container">
+        {% if call_to_action %}
+            <a href="{{ call_to_action_two.url }}" class="btn">
+                {{ call_to_action.title }}
+            </a>
+        {% endif %}
+        {% if call_to_action_two %}
+            <a href="{{ call_to_action_two.url }}" class="btn btn-outline">
+                {{ call_to_action_two.title }}
+            </a>
+        {% endif %}
+    </div>
+</div>

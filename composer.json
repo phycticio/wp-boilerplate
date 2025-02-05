@@ -1,0 +1,75 @@
+{
+  "name": "mody/wp-boilerplate",
+  "type": "project",
+  "license": "MIT",
+  "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
+  "homepage": "https://github.com/phycticio/wp-boilerplate",
+  "authors": [
+    {
+      "name": "Javier Troya",
+      "email": "javiertroya@gmail.com",
+      "homepage": "https://github.com/phycticio"
+    }
+  ],
+  "keywords": [
+    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config"
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app"
+    }
+  },
+  "require": {
+    "php": ">=8.1",
+    "composer/installers": "^2.2",
+    "vlucas/phpdotenv": "^5.5",
+    "oscarotero/env": "^2.1",
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-disallow-indexing": "^2.0",
+    "roots/wordpress": "6.7.1",
+    "roots/wp-config": "1.0.0",
+    "roots/wp-password-bcrypt": "1.2.0",
+    "timber/timber": "^2.3",
+    "ext-pdo": "*",
+    "ramsey/uuid": "^4.7",
+    "wpackagist-plugin/user-role-editor": "^4.64",
+    "wpackagist-plugin/loco-translate": "^2.7"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "laravel/pint": "^1.18",
+    "wpackagist-plugin/wp-crontrol": "^1.17"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "composer/installers": true,
+      "roots/wordpress-core-installer": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "web/content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin",
+        "wpackagist-plugin/user-role-editor"
+      ],
+      "web/content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "web/content/themes/{$name}/": ["type:wordpress-theme"]
+    },
+    "wordpress-install-dir": "web/wp"
+  },
+  "scripts": {
+    "lint": "pint --test",
+    "lint:fix": "pint"
+  }
+}

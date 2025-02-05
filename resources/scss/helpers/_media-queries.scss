@@ -1,0 +1,25 @@
+@use "variables";
+
+//==================================================================
+// MEDIA QUERY MIXINS
+//==================================================================
+//==== MIN WIDTHS ==================================================
+@mixin for-phone-up { @media (min-width: variables.$phone-breakpoint) { @content; } }
+@mixin for-tablet-up { @media (min-width: variables.$tablet-breakpoint) { @content; } }
+@mixin for-laptop-up { @media (min-width: variables.$laptop-breakpoint) { @content; } }
+@mixin for-desktop-up {  @media (min-width: variables.$desktop-breakpoint) { @content; } }
+@mixin for-custom-up($screen-width) { @media (min-width: $screen-width) {  @content; } }
+
+//==== MAX WIDTHS ==================================================
+@mixin for-phone-down { @media (max-width: variables.$phone-breakpoint - 0.0625rem) { @content; } }
+@mixin for-tablet-down { @media (max-width: variables.$tablet-breakpoint - 0.0625rem) { @content; } }
+@mixin for-laptop-down { @media (max-width: variables.$laptop-breakpoint - 0.0625rem) { @content; } }
+@mixin for-desktop-down { @media (max-width: variables.$desktop-breakpoint - 0.0625rem) { @content; } }
+@mixin for-custom-down($screen-width) { @media (max-width: $screen-width - 0.0625rem) { @content; } }
+
+//==== BROWSER SPECIFIC =============================================
+@mixin for-ie11 { @media (-ms-high-contrast: none), (-ms-high-contrast: active) { @content; } }
+@mixin for-ms-edge { @supports (-ms-ime-align:auto) { @content; } }
+
+//==== SPECIAL CASES =================================================
+@mixin for-laptop-up-with-hover { @media (min-width: variables.$laptop-breakpoint) and (hover: hover), (-ms-high-contrast: none), (-ms-high-contrast: active) { @content; } }

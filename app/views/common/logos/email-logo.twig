@@ -1,0 +1,7 @@
+{% if link %}<a href="{{ link }}">{% endif %}
+    {% if options.logo %}
+        <img style="width:200px;height:auto;" src="{{ options.logo.sizes.medium }}" alt="{{ options.logo.alt }}" />
+    {% else %}
+        <img style="width:200px;height:auto;" src="{{ images_url }}/logo-mody-cloud.png" alt="{{ site_name }}" />
+    {% endif %}
+{% if link %}</a>{% endif %}

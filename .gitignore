@@ -1,0 +1,36 @@
+# Application
+web/content/plugins/*
+!web/content/plugins/.gitkeep
+web/content/mu-plugins/*/
+web/content/upgrade
+web/content/uploads/*
+!web/content/uploads/.gitkeep
+web/content/cache/*
+web/content/themes/cloud/dist
+
+# WordPress
+web/wp
+web/.htaccess
+
+# Logs
+*.log
+
+# Dotenv
+.env
+.env.*
+!.env.example
+
+# Composer
+/vendor
+
+# Node
+node_modules
+.vite
+
+# Editor
+.idea
+.vscode
+.DS_Store
+
+# WP-CLI
+wp-cli.local.yml

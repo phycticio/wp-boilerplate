@@ -1,0 +1,217 @@
+@use "sass:list";
+@use "../helpers/media-queries";
+@use "../helpers/mixins";
+@use "../helpers/variables";
+
+//==================================================================
+// TYPOGRAPHY
+//==================================================================
+html {
+    font-size: variables.$base-font-size;
+    font-family: variables.$body-font;
+    color: variables.$body-font-color;
+    @include media-queries.for-laptop-up {
+        overflow-x: hidden;
+    }
+}
+
+body,
+::before,
+::after {
+    -webkit-font-smoothing: antialiased;
+}
+
+@each $heading-type, $breakpoint in variables.$heading-config {
+    #{$heading-type},
+    .#{$heading-type} {
+        margin: 0;
+        font-family: variables.$heading-font;
+        @each $property in mixins.map-get-values(variables.$heading-config, '#{$heading-type}', 'mobile') {
+            $key: list.nth($property, 1);
+            $value: list.nth($property, 2);
+            #{$key}: #{$value};
+        }
+        @include media-queries.for-laptop-up {
+            @each $property in mixins.map-get-values(variables.$heading-config, '#{$heading-type}', 'desktop') {
+                $key: list.nth($property, 1);
+                $value: list.nth($property, 2);
+                #{$key}: #{$value};
+            }
+        }
+    }
+}
+
+a {
+    text-decoration: none;
+    color: variables.$primary;
+}
+
+p,
+li {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    font-weight: 400;
+    @include media-queries.for-laptop-up {
+        font-size: 1rem;
+        line-height: 1.68;
+    }
+    a:not(.btn) {
+        font-weight: 500;
+        border-bottom: 2px solid variables.$white;
+        transition: border-color 0.3s ease;
+        &:hover,
+        &:focus {
+            border-color: variables.$primary;
+        }
+    }
+}
+ol {
+    margin-left: 1rem;
+    li {
+        padding-left: 0.5rem;
+        padding-bottom: 0.25rem;
+    }
+}
+ul {
+    list-style: none;
+    margin-left: 0;
+    li {
+        position: relative;
+        padding-left: 1rem;
+        padding-bottom: 0.25rem;
+        &::before {
+            content: '\2022';
+            color: inherit;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.625rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    }
+}
+
+// WYSIWYG styles
+.content-inner,
+.content-styles {
+    p,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 1rem;
+    }
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+    }
+    ul,
+    ol {
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+    }
+    img {
+        margin-bottom: 1rem;
+        &.alignleft {
+            @include media-queries.for-phone-up {
+                float: left;
+                margin: 0 2rem 0.5rem 0;
+            }
+        }
+        &.alignright {
+            @include media-queries.for-phone-up {
+                float: right;
+                margin: 0 0 0.5rem 2rem;
+            }
+        }
+        &.alignnone {
+            @include media-queries.for-phone-up {
+                display: block;
+                margin: 4rem auto 4rem 0;
+            }
+        }
+    }
+    .btn {
+        margin-bottom: 1rem;
+        + .btn {
+            margin-left: 1rem;
+        }
+    }
+    blockquote {
+        margin: 2.5rem 2rem;
+        padding-left: 2rem;
+        border-left: 3px solid variables.$primary;
+    }
+
+    hr {
+        border-top: 1px solid variables.$grey-30;
+        margin: 3rem 0 3.5rem;
+    }
+
+    .wp-caption-text {
+        font-size: 0.875rem;
+    }
+}
+
+//==================================================================
+// TYPOGRAPHY CLASSES
+//==================================================================
+@each $color_key, $color in variables.$color_list {
+    .text-#{'' + $color_key} {
+        color: $color;
+    }
+}
+
+@each $text-alignment in variables.$text-alignments {
+    .text-#{$text-alignment} {
+        text-align: #{$text-alignment};
+    }
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+@for $i from 1 through 100 {
+    .w-#{$i * 5} {
+        width: calc((#{$i} * 5rem) / 16);
+    }
+
+    .h-#{$i * 5} {
+        height: calc((#{$i} * 5rem) / 16);
+    }
+
+    .w-#{$i}-p {
+        width: #{$i}#{'%'};
+    }
+
+    .h-#{$i}-p {
+        height: #{$i}#{'%'};
+    }
+
+    .max-width-#{$i * 10} {
+        max-width: calc((#{$i * 10}#{'px'}));
+    }
+
+    .max-height-#{$i * 10} {
+        max-height: calc((#{$i * 10}#{'px'}));
+    }
+}
+
+@each $label, $size in variables.$text-sizes {
+    .text-#{$label} {
+        @include mixins.text-size($size);
+    }
+}

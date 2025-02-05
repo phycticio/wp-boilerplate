@@ -1,0 +1,1 @@
+import "@mcscss/editor.scss";

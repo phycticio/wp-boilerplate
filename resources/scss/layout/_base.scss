@@ -1,0 +1,157 @@
+@use "../helpers/media-queries";
+@use "../helpers/mixins";
+@use "../helpers/variables";
+
+//==================================================================
+// BASE PAGE LAYOUT / GENERIC STYLES
+//==================================================================
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: variables.$background;
+    overflow: hidden;
+}
+
+body {
+    &.page-template-default {
+        display: grid;
+        grid-template-columns: 64px 264px 1fr;
+        grid-template-rows: auto;
+
+        @include media-queries.for-laptop-down {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &.page-template-auth-template {
+        display: flex;
+    }
+}
+
+
+.skip-link {
+    position: absolute;
+    top: 2.5rem;
+    left: 1rem;
+    transform: translateX(-100vw);
+    transition: transform 0.3s ease;
+    z-index: 4;
+    @include media-queries.for-laptop-up {
+        top: 1rem;
+    }
+    &:focus {
+        transform: translateX(0);
+    }
+}
+
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+nav ul {
+    @include mixins.list-reset;
+}
+
+html.noscroll {
+    overflow: hidden;
+    &.overlay {
+        position: relative;
+    }
+}
+
+@each $color_key, $color in variables.$color_list {
+    .bg-#{'' + $color_key} {
+        background-color: $color;
+    }
+}
+
+hr {
+    border-bottom: 1px solid variables.$grey-20;
+}
+
+.animate-display {
+    display: none;
+    @include mixins.animate-display();
+
+    &.is-visible {
+        display: block;
+    }
+}
+
+//==================================================================
+// LAYOUT UTILITY
+//==================================================================
+.invisible {
+    @include mixins.invisible;
+}
+
+.bg-image {
+    @include mixins.bg-image;
+}
+
+.sr-only {
+    @include media-queries.for-tablet-up {
+        display: none;
+    }
+}
+
+@for $i from 1 through variables.$grid-columns {
+    .col-#{$i} {
+        flex: 0 0 calc(100% / #{variables.$grid-columns} * #{$i});
+        max-width: calc(100% / #{variables.$grid-columns} * #{$i});
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+
+    .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+        position: relative;
+    }
+
+    .col-12:last-child {
+        margin-right: 0;
+    }
+}
+
+.p-absolute {
+    position: absolute;
+}
+
+.p-fixed {
+    position: fixed;
+}
+
+.p-relative {
+    position: relative;
+}
+
+.p-sticky {
+    position: sticky;
+}
+
+.top {
+    top: 0;
+}
+
+.bottom {
+    bottom: 0;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+

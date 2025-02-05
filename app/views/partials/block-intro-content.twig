@@ -1,0 +1,11 @@
+{% if fields.block_heading or fields.block_description %}
+    {# Pass modifying class 'block-intro--center' to center text #}
+    <div class="block-intro {{ modifiers }}">
+        {% if fields.block_heading %}
+            <h2 class="block-intro__heading">{{ fields.block_heading }}</h2>
+        {% endif %}
+        {% if fields.block_description %}
+            <div class="block-intro__description">{{ fields.block_description }}</div>
+        {% endif %}
+    </div>
+{% endif %}

@@ -1,0 +1,40 @@
+{# Outputs a menu based on a Timber/Menu based 
+on Block Element Modifier (BEM) naming methodology #}
+
+<ul class="{{ class }}" aria-label="{{ menu.title }} menu">
+	{% for item in menu.items %}
+
+		<li class="{{ class }}__item {{ item.classes|join(' ') }} {% apply spaceless %}
+			{# Is parent #}
+			{% if (item.children|length > 0) %}
+				{{ class }}__item--parent
+			{% endif %}
+			{# Is current item #}
+			{% if (item.current) %}
+				{{ class }}__item--current
+			{% endif %}
+			{# Is current item parent #}
+			{% if (item.current_item_parent) %}
+				{{ class }}__item--current-parent
+			{% endif %}
+			{# Is current item ancestor #}
+			{% if (item.current_item_ancestor) %}
+				{{ class }}__item--current-ancestor
+			{% endif %}
+			{% endapply %}">
+
+			<a class="{{ class }}__link" href="{{ item.link }}" title="{{ item.title }}" {{ item.target ? 'target="' ~ item.target ~ '"' : '' }}>{{ item.title }}</a>
+
+			{% if item.children %}
+				<ul class="sub-menu">
+					{% for child in item.children %}
+						<li class="{{ class }}__item">
+							<a class="{{ class }}__link" href="{{ child.url }}" title="{{ child.title }}">{{ child.title }}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+
+		</li>
+	{% endfor %}
+</ul>

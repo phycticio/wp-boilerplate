@@ -1,0 +1,30 @@
+{% include '@app/common/head.twig' %}
+
+<body class="{{ body_class }}">
+
+    {% if GTM_KEY %}
+        <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-{{ GTM_KEY }}" height="0"
+                    width="0"
+                    style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% endif %}
+
+    <div class="auth">
+        {% if post.thumbnail %}
+        <div class="hero lazy" data-bg="url({{ post.thumbnail.src('full') }})"></div>
+        {% else %}
+            <div class="hero default lazy"></div>
+        {% endif %}
+        <main>
+            {% block content %}
+                {{ post.content }}
+            {% endblock %}
+        </main>
+    </div>
+
+    {% include '@app/common/foot.twig' %}
+</body>
+</html>
