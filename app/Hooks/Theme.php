@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Setup;
-
+namespace App\Hooks;
 use function Env\env;
 
 class Theme {

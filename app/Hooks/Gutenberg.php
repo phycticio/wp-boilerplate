@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Setup;
+namespace App\Hooks;
 
 class Gutenberg {
 	public static function init() : void {

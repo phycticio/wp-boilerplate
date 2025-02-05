@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Setup;
+namespace App\Hooks;
 
 class Language {
     public static function init() : void {

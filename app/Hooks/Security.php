@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Setup;
+namespace App\Hooks;
 
 class Security {
 	public static function init() : void {

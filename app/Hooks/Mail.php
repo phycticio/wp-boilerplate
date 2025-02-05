@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Setup;
+namespace App\Hooks;
 
 use Roots\WPConfig\Config;
 use Timber\Timber;

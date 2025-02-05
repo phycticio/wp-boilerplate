@@ -1,9 +1,0 @@
-<div class="logo">
-    {% if link %}<a href="{{ link }}">{% endif %}
-        {% if options.favicon %}
-            <img src="" data-src="{{ options.favicon.sizes.medium }}" alt="{{ options.favicon.alt }}" class="lazy">
-        {% else %}
-            <img src="" data-src="{{ images_url }}/logo-black-square.png" alt="{{ site_name }}" class="lazy"/>
-        {% endif %}
-    {% if link %}</a>{% endif %}
-</div>

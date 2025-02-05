@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Setup;
-
+namespace App\Hooks;
 
 class Views {
     static function init(): void {
