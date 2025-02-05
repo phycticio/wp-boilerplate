@@ -24,34 +24,6 @@ EOF;
     }
 
     public static function timber_context(array $context): array {
-        if (function_exists('get_fields')) {
-            $context['options'] = get_fields('options');
-            $context['auth_urls'] = [
-                'sign_in' => wp_login_url(),
-                'sign_up' => wp_registration_url(),
-                'lost_password' => wp_lostpassword_url(),
-            ];
-        }
-
-        $user = wp_get_current_user();
-        $post_id = get_the_ID();
-        $context['title'] = get_the_title();
-        $context['display_name'] = self::_get_user_display_name($user);
-        $context['sign_out_link'] = wp_logout_url('/auth/sign-in');
-        $context['role_name'] = self::_get_user_role_name($user);
-        $context['avatar'] = get_avatar($user->ID);
-        $context['account_page'] = self::_get_account_page();
-        $context['site_url'] = get_bloginfo('url');
-        $context['images_url'] = get_template_directory_uri() . '/images';
-        $context['site_name'] = get_bloginfo();
-        $main_cta = get_post_meta($post_id, 'main_cta', true) ?? get_option('main_cta');
-        $context['main_cta'] = $main_cta;
-        $context['site']->favicon = get_stylesheet_directory_uri() . '/images/logo-black-square.png';
-        $context['static_pages'] = self::_get_static_pages();
-        $context['network_url'] = network_home_url();
-        $context['routes'] = self::_get_page_routes();
-        $context['icon'] = get_post_meta(get_the_ID(), 'icon', true);
-        $context['ajax_url'] = admin_url('admin-ajax.php');
         return $context;
     }
 
@@ -70,10 +42,7 @@ EOF;
 
     public static function timber_locations(array $paths): array {
         $paths['app'] = [
-            APP_PATH.'/views',
-        ];
-        $paths['provision'] = [
-            APP_PATH . '/provision',
+            SRC_PATH.'/views',
         ];
 
         return $paths;

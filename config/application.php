@@ -209,7 +209,7 @@ if (!defined('ABSPATH')) {
 }
 
 if (!defined('SRC_PATH')) {
-    define('SRC_PATH', $root_dir . '/src');
+    define('SRC_PATH', $root_dir . '/resources');
 }
 
 if (!defined('APP_PATH')) {
@@ -221,35 +221,7 @@ if (!defined('LOGS_PATH')) {
 }
 
 if (!defined('WP_DEFAULT_THEME')) {
-    define('WP_DEFAULT_THEME', 'cloud');
-}
-
-if (!defined('MC_SITES_PATH')) {
-    define('MC_SITES_PATH', __DIR__ . '/sites');
-}
-
-if (!defined('MC_USERS_PATH')) {
-    define('MC_USERS_PATH', __DIR__ . '/users');
-}
-
-if (!defined('MC_AUTOLOGIN_TOKENS_PATH')) {
-    define('MC_AUTOLOGIN_TOKENS_PATH', __DIR__ . '/autologin-tokens');
-}
-
-if (!defined('MC_LOGOUT_PATH')) {
-    define('MC_LOGOUT_PATH', __DIR__ . '/logout-info');
-}
-
-if (!defined('MC_UUID_PATH')) {
-    define('MC_UUID_PATH', __DIR__ . '/uuid');
-}
-
-if (!defined('MC_MIGRATIONS_PATH')) {
-    define('MC_MIGRATIONS_PATH', APP_PATH . '/migrations');
-}
-
-if (!defined('MC_PLUGINS_PATH')) {
-    define('MC_PLUGINS_PATH', ROOT_DIR . '/content/plugins');
+    define('WP_DEFAULT_THEME', 'theme');
 }
 
 if (!defined('WP_HTTP_BLOCK_EXTERNAL')) {
