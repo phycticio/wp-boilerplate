@@ -14,6 +14,9 @@
   "keywords": [
     "boilerplate", "composer", "mody", "wordpress", "wp", "wp-config"
   ],
+  "support": {
+    "issues": "https://github.com/phycticio/wp-boilerplate/issues"
+  },
   "repositories": [
     {
       "type": "composer",
