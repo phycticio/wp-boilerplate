@@ -6,7 +6,7 @@ web/content/upgrade
 web/content/uploads/*
 !web/content/uploads/.gitkeep
 web/content/cache/*
-web/content/themes/cloud/dist
+web/content/themes/theme/dist
 
 # WordPress
 web/wp

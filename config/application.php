@@ -35,30 +35,9 @@ $webroot_dir = $root_dir . '/web';
  * .env.local will override .env if it exists
  */
 if (file_exists($root_dir . '/.env')) {
-    if (!function_exists('app_get_subdomain')) {
-        function app_get_subdomain(): string
-        {
-            $host = parse_url($_SERVER['HTTP_HOST'], PHP_URL_HOST) ?? $_SERVER['HTTP_HOST'];
-            $parts = explode('.', $host);
-
-            if (count($parts) > 2) {
-                array_pop($parts);
-                array_pop($parts);
-            }
-            return implode('.', $parts);
-        }
-    }
-
     $env_files = file_exists($root_dir . '/.env.local')
         ? ['.env', '.env.local']
         : ['.env'];
-
-    $paths = [$root_dir];
-
-    $sub_domain = php_sapi_name() !== 'cli' ? app_get_subdomain() : false;
-    if ($sub_domain && file_exists("{$root_dir}/config/sites/{$sub_domain}/.env")) {
-        $paths[] = "{$root_dir}/config/sites/{$sub_domain}";
-    }
 
     $repository = Dotenv\Repository\RepositoryBuilder::createWithNoAdapters()
         ->addAdapter(Dotenv\Repository\Adapter\EnvConstAdapter::class)
@@ -66,7 +45,7 @@ if (file_exists($root_dir . '/.env')) {
         ->immutable()
         ->make();
 
-    $dotenv = Dotenv\Dotenv::create($repository, $paths, $env_files, false);
+    $dotenv = Dotenv\Dotenv::create($repository, $root_dir, $env_files, false);
     $dotenv->load();
 
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
@@ -173,12 +152,16 @@ ini_set('display_errors', env('PHP_DISPLAY_ERRORS') ?? '0');
  * Multisite
  */
 Config::define('WP_ALLOW_MULTISITE', false);
-Config::define('MULTISITE', false);
-Config::define('SUBDOMAIN_INSTALL', false);
-Config::define('DOMAIN_CURRENT_SITE', env('DOMAIN_CURRENT_SITE'));
-Config::define('PATH_CURRENT_SITE', env('PATH_CURRENT_SITE') ?: '/');
-Config::define('SITE_ID_CURRENT_SITE', env('SITE_ID_CURRENT_SITE') ?: 1);
-Config::define('BLOG_ID_CURRENT_SITE', env('BLOG_ID_CURRENT_SITE') ?: 1);
+
+/**
+ * Custom
+ */
+Config::define('ROOT_DIR', $webroot_dir);
+Config::define('RESOURCES_PATH', $root_dir . '/resources');
+Config::define('APP_PATH', $root_dir . '/app');
+Config::define('WP_DEFAULT_THEME', env('WP_DEFAULT_THEME') ?: 'theme');
+Config::define('WP_HTTP_BLOCK_EXTERNAL', env('WP_HTTP_BLOCK_EXTERNAL') ?: true);
+Config::define('APP_THEME_DOMAIN', env('APP_THEME_DOMAIN') ?: 'app');
 
 /**
  * Allow WordPress to detect HTTPS when used behind a reverse proxy or a load balancer
@@ -199,39 +182,6 @@ Config::apply();
 /**
  * Bootstrap WordPress
  */
-
-// @todo change all these to Config::define()
-if (!defined('ROOT_DIR')) {
-    define('ROOT_DIR', $webroot_dir);
-}
 if (!defined('ABSPATH')) {
     define('ABSPATH', $webroot_dir . '/wp/');
-}
-
-if (!defined('SRC_PATH')) {
-    define('SRC_PATH', $root_dir . '/resources');
-}
-
-if (!defined('APP_PATH')) {
-    define('APP_PATH', $root_dir . '/app');
-}
-
-if (!defined('LOGS_PATH')) {
-    define('LOGS_PATH', $root_dir . '/logs');
-}
-
-if (!defined('WP_DEFAULT_THEME')) {
-    define('WP_DEFAULT_THEME', 'theme');
-}
-
-if (!defined('WP_HTTP_BLOCK_EXTERNAL')) {
-    define('WP_HTTP_BLOCK_EXTERNAL', true);
-}
-
-if (!defined('APP_THEME_DOMAIN')) {
-    define('APP_THEME_DOMAIN', 'app');
-}
-
-if (!defined('DISABLE_WP_CRON')) {
-    define('DISABLE_WP_CRON', true);
 }

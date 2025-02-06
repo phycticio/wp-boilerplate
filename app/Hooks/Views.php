@@ -42,7 +42,7 @@ EOF;
 
     public static function timber_locations(array $paths): array {
         $paths['app'] = [
-            SRC_PATH.'/views',
+            RESOURCES_PATH.'/views',
         ];
 
         return $paths;

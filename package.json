@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "wp-scripts build --webpack-src-dir=resources --output-path=web/content/themes/cloud/dist --config config/webpack.config.js",
-    "dev": "wp-scripts start --webpack-src-dir=resources --output-path=web/content/themes/cloud/dist --config config/webpack.config.js",
+    "build": "wp-scripts build --webpack-src-dir=resources --output-path=web/content/themes/theme/dist --config config/webpack.config.js",
+    "dev": "wp-scripts start --webpack-src-dir=resources --output-path=web/content/themes/theme/dist --config config/webpack.config.js",
     "translate": "pnpm run translate:pot",
     "translate:twig": "wp i18n make-pot . $(pwd)/languages/twig.pot --include=\"$(pwd)app/**/*.twig\"",
     "translate:react": "wp i18n make-pot . $(pwd)/languages/react.pot --include=\"src/script/**/*.jsx\"",

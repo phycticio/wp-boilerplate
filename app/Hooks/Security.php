@@ -27,5 +27,7 @@ class Security {
         remove_action( 'wp_maybe_auto_update', 'wp_maybe_auto_update' );
         remove_action( 'init', 'wp_schedule_update_checks' );
         remove_action( 'wp_delete_temp_updater_backups', 'wp_delete_all_temp_backups' );
+
+        add_filter('translations_api', '__return_true');
 	}
 }
