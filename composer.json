@@ -1,5 +1,5 @@
 {
-  "name": "mody/wp-boilerplate",
+  "name": "phycticio/wp-boilerplate",
   "type": "project",
   "license": "MIT",
   "description": "WordPress boilerplate with Composer, easier configuration, and an improved folder structure",
