@@ -35,7 +35,6 @@ class Blocks {
 
         $context = Timber::context([
             'block' => $block,
-            'fields' => get_fields(),
             'is_preview' => $is_preview,
         ]);
 
