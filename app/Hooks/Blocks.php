@@ -5,11 +5,11 @@ namespace App\Hooks;
 use Timber\Timber;
 
 class Blocks {
-	public static function init() : void {
-        add_action('init', self::register_block_types(...));
+	public function init() : void {
+        add_action('init', array($this, 'register_block_types'));
 	}
 
-    public static function register_block_types(): void
+    public function register_block_types(): void
     {
         $block_types = glob(APP_THEME_DIR . '/dist/blocks/*');
         if (count($block_types) > 0) {
