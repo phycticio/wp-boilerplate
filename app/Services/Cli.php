@@ -1,5 +1,5 @@
 <?php
-namespace App\Helpers;
+namespace App\Services;
 
 class Cli {
     public static function is_cli() : bool {
