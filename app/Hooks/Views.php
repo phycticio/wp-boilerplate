@@ -2,6 +2,8 @@
 
 namespace App\Hooks;
 
+use Roots\WPConfig\Config;
+
 class Views {
     static function init(): void {
         if (\Timber::class) {
@@ -42,7 +44,7 @@ EOF;
 
     public static function timber_locations(array $paths): array {
         $paths['app'] = [
-            RESOURCES_PATH.'/views',
+            Config::get('RESOURCES_PATH')   .'/views',
         ];
 
         return $paths;
