@@ -7,7 +7,7 @@ use Timber\Timber;
 use function Env\env;
 
 class Mail {
-    public static function init(): void {
+    public function init(): void {
         add_filter('wp_mail', self::wp_mail(...));
         add_filter( 'wp_mail_content_type', self::wp_mail_content_type(...));
     }

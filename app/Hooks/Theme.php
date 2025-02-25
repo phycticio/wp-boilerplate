@@ -5,7 +5,7 @@ use Roots\WPConfig\Config;
 use function Env\env;
 
 class Theme {
-    public static function init(): void {
+    public function init(): void {
         add_action('init', self::wp_init(...), 100);
         add_action('after_setup_theme', self::after_setup_theme(...));
         add_action('wp_enqueue_scripts', self::wp_enqueue_scripts(...), 100);

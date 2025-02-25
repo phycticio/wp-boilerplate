@@ -5,7 +5,7 @@ namespace App\Hooks;
 use Roots\WPConfig\Config;
 
 class Views {
-    static function init(): void {
+    public function init(): void {
         if (\Timber::class) {
             add_action('timber/context', self::timber_context(...));
             add_filter('timber/twig', self::timber_twig(...));

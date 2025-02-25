@@ -2,8 +2,10 @@
 
 namespace App\Hooks;
 
+use Roots\WPConfig\Config;
+
 class Language {
-    public static function init() : void {
+    public function init() : void {
         add_filter('locale', self::locale(...));
     }
 
