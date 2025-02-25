@@ -35,20 +35,21 @@
     "vlucas/phpdotenv": "^5.5",
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
-    "roots/bedrock-disallow-indexing": "^2.0",
     "roots/wordpress": "6.7.1",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.2.0",
     "timber/timber": "^2.3",
     "ext-pdo": "*",
-    "ramsey/uuid": "^4.7",
-    "wpackagist-plugin/user-role-editor": "^4.64",
-    "wpackagist-plugin/loco-translate": "^2.7"
+    "ramsey/uuid": "^4.7"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "laravel/pint": "^1.18",
     "wpackagist-plugin/wp-crontrol": "^1.17"
+  },
+  "suggest": {
+    "wpackagist-plugin/user-role-editor": "^4.64",
+    "wpackagist-plugin/loco-translate": "^2.7"
   },
   "config": {
     "optimize-autoloader": true,

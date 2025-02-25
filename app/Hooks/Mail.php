@@ -8,11 +8,11 @@ use function Env\env;
 
 class Mail {
     public function init(): void {
-        add_filter('wp_mail', self::wp_mail(...));
-        add_filter( 'wp_mail_content_type', self::wp_mail_content_type(...));
+        add_filter('wp_mail', array($this, 'wp_mail'));
+        add_filter( 'wp_mail_content_type', array($this, 'wp_mail_content_type'));
     }
 
-    public static function wp_mail(array $args): bool {
+    public function wp_mail(array $args): bool {
         $context = Timber::context([
             'site_url' => home_url(),
             'year' => gmdate('Y'),
@@ -25,16 +25,16 @@ class Mail {
         $to = $args['to'];
         $subject = $args['subject'];
         $message = $args['message'];
-        $headers = $args['headers'] ?? [];
+        $headers = $args['headers'] ?? array();
 
-        return self::sendgrid_send_mail($to, $subject, $message, $headers);
+        return $this->sendgrid_send_mail($to, $subject, $message, $headers);
     }
 
-    public static function wp_mail_content_type() : string {
+    public function wp_mail_content_type() : string {
         return 'text/html';
     }
 
-    public static function sendgrid_send_mail($to, $subject, $message, $headers = []) : bool {
+    public function sendgrid_send_mail($to, $subject, $message, $headers = []) : bool {
         $url = Config::get('SENDGRID_API_URL');
 
         $email_data = [

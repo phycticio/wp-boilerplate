@@ -160,8 +160,9 @@ Config::define('ROOT_DIR', $webroot_dir);
 Config::define('RESOURCES_PATH', $root_dir . '/resources');
 Config::define('APP_PATH', $root_dir . '/app');
 Config::define('WP_DEFAULT_THEME', env('WP_DEFAULT_THEME') ?: 'theme');
-Config::define('WP_HTTP_BLOCK_EXTERNAL', env('WP_HTTP_BLOCK_EXTERNAL') ?: true);
+Config::define('WP_HTTP_BLOCK_EXTERNAL', env('WP_HTTP_BLOCK_EXTERNAL') ?: false);
 Config::define('APP_THEME_DOMAIN', env('APP_THEME_DOMAIN') ?: 'app');
+Config::define('WP_DISABLE_FULLSCREEN_EDITOR', env('WP_DISABLE_FULLSCREEN_EDITOR') ?: false);
 
 /**
  * Allow WordPress to detect HTTPS when used behind a reverse proxy or a load balancer
