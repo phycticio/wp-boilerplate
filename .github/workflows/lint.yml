@@ -46,7 +46,7 @@ jobs:
             node_modules-${{ runner.os }}-
 
       - name: Composer Install
-        run: composer install --no-dev -o
+        run: composer install
         if: steps.cache-vendor.outputs.cache-hit != 'true'
 
       - name: Install pnpm
