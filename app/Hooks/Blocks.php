@@ -13,7 +13,7 @@ class Blocks
 
     public function register_block_types(): void
     {
-        $block_types = glob(APP_THEME_DIR . '/dist/blocks/*');
+        $block_types = glob(APP_THEME_DIR . '/blocks/*');
         if (count($block_types) > 0) {
             foreach ($block_types as $block) {
                 if (is_dir($block)) {

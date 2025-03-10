@@ -1,0 +1,80 @@
+name: Build application
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  web-deploy:
+    name: 🎉 Lint code
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: Cache Vendor
+        id: cache-vendor
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-vendors
+        with:
+          path: vendor
+          key: vendor-${{ runner.os }}-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            vendor-${{ runner.os }}-
+
+      - name: Cache Plugins
+        id: cache-plugins
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-plugins
+        with:
+          path: web/content/plugins/
+          key: plugins-${{ runner.os }}-${{ hashFiles('web/content/plugins/**') }}
+          restore-keys: |
+            plugins-${{ runner.os }}-
+
+      - name: Cache Node Modules
+        id: cache-node_modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node_modules
+        with:
+          path: node_modules
+          key: node_modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            node_modules-${{ runner.os }}-
+
+      - name: Composer Install
+        run: composer install --no-dev -o
+        if: steps.cache-vendor.outputs.cache-hit != 'true'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: nvm use ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - name: pnpm install
+        run: pnpm install
+        if: steps.cache-node_modules.outputs.cache-hit != 'true'
+
+      - name: lint:css
+        run: pnpm lint:css
+
+      - name: lint:js
+        run: pnpm lint:js
+
+      - name: lint:md:docs
+        run: pnpm lint:md:docs
+
+      - name: lint:pkg-json
+        run: pnpm lint:pkg-json
+
+      - name: lint:php
+        run: composer run lint:fix
