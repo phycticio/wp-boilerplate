@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 define('APP_THEME_LOCALE', 'app');

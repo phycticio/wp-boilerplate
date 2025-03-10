@@ -1,27 +1,32 @@
 <?php
 
 namespace App\Hooks;
-use Roots\WPConfig\Config;
-use function Env\env;
 
-class Theme {
-    public function init(): void {
-        add_action('init', array($this, 'wp_init'), 100);
-        add_action('after_setup_theme', array($this, 'after_setup_theme'));
-        add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'), 100);
-        add_action('admin_head', array($this, 'admin_head'));
-        add_action('wp_footer', array($this, 'wp_footer'));
-        add_action('admin_menu', array($this, 'admin_menu'));
-        add_filter('the_content', array($this, 'the_content'), 30);
+use Roots\WPConfig\Config;
+
+class Theme
+{
+    public function init(): void
+    {
+        add_action('init', [$this, 'wp_init'], 100);
+        add_action('after_setup_theme', [$this, 'after_setup_theme']);
+        add_action('wp_enqueue_scripts', [$this, 'wp_enqueue_scripts'], 100);
+        add_action('admin_head', [$this, 'admin_head']);
+        add_action('wp_footer', [$this, 'wp_footer']);
+        add_action('admin_menu', [$this, 'admin_menu']);
+        add_filter('the_content', [$this, 'the_content'], 30);
+        add_filter('template_include', [$this, 'template_include']);
+        add_filter('theme_page_templates', [$this, 'theme_page_templates']);
         add_filter('wpseo_debug_markers', '__return_false');
-        add_filter('wpseo_metabox_prio', array($this, 'wpseo_metabox_prio'));
+        add_filter('wpseo_metabox_prio', [$this, 'wpseo_metabox_prio']);
     }
 
-    public function wp_init(): void {
+    public function wp_init(): void
+    {
         register_nav_menus([
             'header_menu' => __('Header menu'),
             'footer_top_menu' => __('Footer top menu'),
-            'footer_bottom_menu' => __('Footer bottom menu')
+            'footer_bottom_menu' => __('Footer bottom menu'),
         ]);
 
         remove_action('wp_head', 'feed_links_extra', 3);
@@ -39,27 +44,25 @@ class Theme {
         remove_action('admin_print_styles', 'print_emoji_styles');
 
         wp_deregister_script('heartbeat');
-
-        if(env('CHILD_SITE') || (!env('CHILD_SITE') && !current_user_can('administrator'))) {
-            show_admin_bar(false);
-        }
     }
 
-    public function after_setup_theme(): void {
+    public function after_setup_theme(): void
+    {
         add_theme_support('post-thumbnails');
         add_theme_support('title-tag');
-        add_theme_support( 'custom-logo');
+        add_theme_support('custom-logo');
         load_theme_textdomain(Config::get('APP_THEME_DOMAIN'), Config::get('APP_PATH') . '/languages');
     }
 
-    public function wp_enqueue_scripts(): void {
+    public function wp_enqueue_scripts(): void
+    {
         foreach (self::_scripts() as $script) {
             wp_register_script(
                 $script['handle'],
                 $script['url'],
                 $script['deps'],
                 $script['ver'],
-                $script['args']
+                $script['args'],
             );
             wp_localize_script($script['handle'], 'App', [
                 'network_url' => network_home_url(),
@@ -76,25 +79,51 @@ class Theme {
                 $style['url'],
                 $style['deps'],
                 $style['ver'],
-                $style['media']
+                $style['media'],
             );
             wp_enqueue_style($style['handle']);
         }
     }
 
-    public function the_content(string $p): string {
+    public function the_content(string $p): string
+    {
         return preg_replace('/<p>\\s*?(<a rel=\"attachment.*?><img.*?><\\/a>|<img.*?>)?\\s*<\\/p>/s', '$1', $p);
     }
 
-    public function admin_head(): void {
+    public function template_include(string $template) : string {
+        global $post;
+
+        if(!$post) {
+            return $template;
+        }
+
+        $templates = Config::get('APP_TEMPLATES');
+
+        $meta = get_post_meta($post->ID, '_wp_page_template', true);
+
+        if (isset($templates[$meta])) {
+            return $templates[$meta];
+        }
+
+        return $template;
+    }
+
+    public function theme_page_templates(array $templates) : array {
+        return array_merge($templates, Config::get('APP_TEMPLATES') ?? array());
+    }
+
+    public function admin_head(): void
+    {
         echo '<style>.yoast-notice-go-premium, .wpseo-metabox-buy-premium, .yoast_premium_upsell_admin_block, .wpseo_content_cell #sidebar {display: none;}</style>';
     }
 
-    public function wp_footer(): void {
+    public function wp_footer(): void
+    {
         wp_deregister_script('wp-embed');
     }
 
-    public function admin_menu(): void {
+    public function admin_menu(): void
+    {
         if (function_exists('remove_menu_page')) {
             remove_menu_page('edit-comments.php');
         }
@@ -102,33 +131,36 @@ class Theme {
         remove_filter('update_footer', 'core_update_footer');
     }
 
-    public function wpseo_metabox_prio(): string {
+    public function wpseo_metabox_prio(): string
+    {
         return 'low';
     }
 
-    private static function _scripts(): array {
-        $app = include(APP_THEME_DIR.'/dist/app.asset.php');
+    private static function _scripts(): array
+    {
+        $app = include(APP_THEME_DIR . '/dist/app.asset.php');
         return [
             [
                 'handle' => 'app',
-                'url' => APP_THEME_URL.'/dist/app.js',
+                'url' => APP_THEME_URL . '/dist/app.js',
                 'ver' => $app['version'],
                 'deps' => array_merge($app['dependencies'], ['wp-api']),
-                'args' => ['in_footer' => true, 'defer' => true]
-            ]
+                'args' => ['in_footer' => true, 'defer' => true],
+            ],
         ];
     }
 
-    private static function _styles(): array {
-        $app = include(APP_THEME_DIR.'/dist/app.asset.php');
+    private static function _styles(): array
+    {
+        $app = include(APP_THEME_DIR . '/dist/app.asset.php');
         return [
             [
                 'handle' => 'app',
-                'url' => APP_THEME_URL.'/dist/app.css',
+                'url' => APP_THEME_URL . '/dist/app.css',
                 'ver' => $app['version'],
                 'deps' => null,
-                'media' => 'all'
-            ]
+                'media' => 'all',
+            ],
         ];
     }
 }

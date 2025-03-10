@@ -4,15 +4,17 @@ namespace App\Hooks;
 
 use Roots\WPConfig\Config;
 use Timber\Timber;
-use function Env\env;
 
-class Mail {
-    public function init(): void {
-        add_filter('wp_mail', array($this, 'wp_mail'));
-        add_filter( 'wp_mail_content_type', array($this, 'wp_mail_content_type'));
+class Mail
+{
+    public function init(): void
+    {
+        add_filter('wp_mail', [$this, 'wp_mail']);
+        add_filter('wp_mail_content_type', [$this, 'wp_mail_content_type']);
     }
 
-    public function wp_mail(array $args): bool {
+    public function wp_mail(array $args): bool
+    {
         $context = Timber::context([
             'site_url' => home_url(),
             'year' => gmdate('Y'),
@@ -25,31 +27,33 @@ class Mail {
         $to = $args['to'];
         $subject = $args['subject'];
         $message = $args['message'];
-        $headers = $args['headers'] ?? array();
+        $headers = $args['headers'] ?? [];
 
         return $this->sendgrid_send_mail($to, $subject, $message, $headers);
     }
 
-    public function wp_mail_content_type() : string {
+    public function wp_mail_content_type(): string
+    {
         return 'text/html';
     }
 
-    public function sendgrid_send_mail($to, $subject, $message, $headers = []) : bool {
+    public function sendgrid_send_mail($to, $subject, $message, $headers = []): bool
+    {
         $url = Config::get('SENDGRID_API_URL');
 
         $email_data = [
             'personalizations' => [[
                 'to' => is_array($to) ? array_map(fn($email) => ['email' => $email], $to) : [['email' => $to]],
-                'subject' => $subject
+                'subject' => $subject,
             ]],
             'from' => [
                 'email' => Config::get('EMAIL_FROM'),
-                'name'  => Config::get('EMAIL_FROM_NAME')
+                'name'  => Config::get('EMAIL_FROM_NAME'),
             ],
             'content' => [[
                 'type' => 'text/html',
-                'value' => nl2br($message)
-            ]]
+                'value' => nl2br($message),
+            ]],
         ];
 
         $ch = curl_init();
@@ -59,7 +63,7 @@ class Mail {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($email_data));
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Authorization: Bearer ' . Config::get('SENDGRID_API_KEY'),
-            'Content-Type: application/json'
+            'Content-Type: application/json',
         ]);
 
         $response = curl_exec($ch);

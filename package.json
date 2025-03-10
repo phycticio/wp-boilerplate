@@ -1,55 +1,64 @@
 {
-  "name": "modycloud",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "wp-scripts build --webpack-src-dir=resources --output-path=web/content/themes/theme/dist --config config/webpack.config.js",
-    "dev": "wp-scripts start --webpack-src-dir=resources --output-path=web/content/themes/theme/dist --config config/webpack.config.js",
-    "translate": "pnpm run translate:pot",
-    "translate:twig": "wp i18n make-pot . $(pwd)/languages/twig.pot --include=\"$(pwd)app/**/*.twig\"",
-    "translate:react": "wp i18n make-pot . $(pwd)/languages/react.pot --include=\"src/script/**/*.jsx\"",
-    "translate:js": "wp i18n make-pot . $(pwd)/languages/app.pot --include=\"src/**/*.js\"",
-    "translate:pot": "wp i18n make-pot . $(pwd)/languages/app.pot --include=\"src\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/phycticio/wp-boilerplate"
-  },
-  "author": "Mody Solutions",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/phycticio/wp-boilerplate"
-  },
-  "homepage": "https://github.com/phycticio/wp-boilerplate",
-  "dependencies": {
-    "@babel/core": "^7.26.0",
-    "@babel/preset-react": "^7.26.3",
-    "@wordpress/components": "^28.1.0",
-    "@wordpress/dom-ready": "^4.15.0",
-    "@wordpress/element": "^6.15.1",
-    "@wordpress/i18n": "^5.14.0",
-    "aos": "^2.3.4",
-    "babel-loader": "^9.2.1",
-    "css-loader": "^7.1.2",
-    "gettext-parser": "^8.0.0",
-    "glob": "^11.0.1",
-    "react-router-dom": "^7.1.1",
-    "react-toastify": "^11.0.2",
-    "sass-loader": "^16.0.4",
-    "scss-loader": "^0.0.1",
-    "style-loader": "^4.0.0",
-    "swiper": "^11.1.4",
-    "uuid": "^11.0.5",
-    "validator": "^13.12.0"
-  },
-  "devDependencies": {
-    "@wordpress/block-editor": "^13.1.0",
-    "@wordpress/blocks": "^13.1.0",
-    "@wordpress/icons": "^10.1.0",
-    "@wordpress/scripts": "^27.8.0",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-manifest-plugin": "^5.0.0"
-  }
+	"name": "modycloud",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-src-dir=resources --output-path=web/content/themes/theme/dist --config config/webpack.config.js",
+		"dev": "wp-scripts start --webpack-src-dir=resources --output-path=web/content/themes/theme/dist --config config/webpack.config.js",
+		"translate": "pnpm run translate:pot",
+		"translate:twig": "wp i18n make-pot . $(pwd)/languages/twig.pot --include=\"$(pwd)app/**/*.twig\"",
+		"translate:react": "wp i18n make-pot . $(pwd)/languages/react.pot --include=\"src/script/**/*.jsx\"",
+		"translate:js": "wp i18n make-pot . $(pwd)/languages/app.pot --include=\"src/**/*.js\"",
+		"translate:pot": "wp i18n make-pot . $(pwd)/languages/app.pot --include=\"src\"",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/phycticio/wp-boilerplate"
+	},
+	"author": "Mody Solutions",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/phycticio/wp-boilerplate"
+	},
+	"homepage": "https://github.com/phycticio/wp-boilerplate",
+	"dependencies": {
+		"@babel/core": "^7.26.0",
+		"@babel/preset-react": "^7.26.3",
+		"@wordpress/components": "^28.1.0",
+		"@wordpress/dom-ready": "^4.15.0",
+		"@wordpress/element": "^6.15.1",
+		"@wordpress/i18n": "^5.14.0",
+		"aos": "^2.3.4",
+		"babel-loader": "^9.2.1",
+		"css-loader": "^7.1.2",
+		"gettext-parser": "^8.0.0",
+		"glob": "^11.0.1",
+		"react-router-dom": "^7.1.1",
+		"react-toastify": "^11.0.2",
+		"sass-loader": "^16.0.4",
+		"scss-loader": "^0.0.1",
+		"style-loader": "^4.0.0",
+		"swiper": "^11.1.4",
+		"uuid": "^11.0.5",
+		"validator": "^13.12.0"
+	},
+	"devDependencies": {
+		"@wordpress/block-editor": "^13.1.0",
+		"@wordpress/blocks": "^13.1.0",
+		"@wordpress/icons": "^10.1.0",
+		"@wordpress/scripts": "^27.8.0",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4",
+		"webpack-manifest-plugin": "^5.0.0"
+	}
 }

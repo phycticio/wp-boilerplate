@@ -4,10 +4,12 @@ namespace App\Hooks;
 
 use Timber\Timber;
 
-class Blocks {
-	public function init() : void {
-        add_action('init', array($this, 'register_block_types'));
-	}
+class Blocks
+{
+    public function init(): void
+    {
+        add_action('init', [$this, 'register_block_types']);
+    }
 
     public function register_block_types(): void
     {
@@ -20,16 +22,22 @@ class Blocks {
                     add_filter(
                         'allowed_block_types_all',
                         function ($allowed_blocks) use ($block_data) {
-                            if (!is_array($allowed_blocks)) return $allowed_blocks;
+                            if (!is_array($allowed_blocks)) {
+                                return $allowed_blocks;
+                            }
                             $allowed_blocks[] = $block_data->name;
                             return $allowed_blocks;
-                        }, 99, 2);
+                        },
+                        99,
+                        2,
+                    );
                 }
             }
         }
     }
 
-    public static function render( $block, $content = '', $is_preview = false ) : void {
+    public static function render($block, $content = '', $is_preview = false): void
+    {
         $block_name = sanitize_title_with_dashes(str_replace('app/', '', $block['name']));
         $block_template = $block_name . '.twig';
 

@@ -1,8 +1,10 @@
 {
-  "preset": "per",
-  "exclude": [
-    "web/wp",
-    "web/app/mu-plugins/bedrock-disallow-indexing",
-    "web/app/plugins"
-  ]
+	"preset": "per",
+	"exclude": [
+		"web/wp",
+		"web/content/mu-plugins/bedrock-disallow-indexing",
+		"web/content/plugins",
+		"web/content/languages",
+		"web/content/themes/theme/dist"
+	]
 }

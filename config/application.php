@@ -163,6 +163,7 @@ Config::define('WP_DEFAULT_THEME', env('WP_DEFAULT_THEME') ?: 'theme');
 Config::define('WP_HTTP_BLOCK_EXTERNAL', env('WP_HTTP_BLOCK_EXTERNAL') ?: false);
 Config::define('APP_THEME_DOMAIN', env('APP_THEME_DOMAIN') ?: 'app');
 Config::define('WP_DISABLE_FULLSCREEN_EDITOR', env('WP_DISABLE_FULLSCREEN_EDITOR') ?: false);
+COnfig::define('APP_TEMPLATES', array());
 
 /**
  * Allow WordPress to detect HTTPS when used behind a reverse proxy or a load balancer
