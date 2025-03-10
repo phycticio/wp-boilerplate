@@ -64,17 +64,5 @@ jobs:
         run: pnpm install
         if: steps.cache-node_modules.outputs.cache-hit != 'true'
 
-      - name: lint:css
-        run: pnpm lint:css
-
-      - name: lint:js
-        run: pnpm lint:js
-
-      - name: lint:md:docs
-        run: pnpm lint:md:docs
-
-      - name: lint:pkg-json
-        run: pnpm lint:pkg-json
-
-      - name: lint:php
-        run: composer run lint:fix
+      - name: lint
+        run: pnpm lint

@@ -8,7 +8,7 @@ module.exports = {
 		editor: path.resolve( process.cwd(), 'resources/scripts', 'editor.js' ),
 	},
 	output: {
-		filename: '[name].js',
+		filename: '[name]-[fullhash].js',
 		path: path.resolve( process.cwd(), 'dist' ),
 	},
 	resolve: {

@@ -90,10 +90,11 @@ class Theme
         return preg_replace('/<p>\\s*?(<a rel=\"attachment.*?><img.*?><\\/a>|<img.*?>)?\\s*<\\/p>/s', '$1', $p);
     }
 
-    public function template_include(string $template) : string {
+    public function template_include(string $template): string
+    {
         global $post;
 
-        if(!$post) {
+        if (!$post) {
             return $template;
         }
 
@@ -108,8 +109,9 @@ class Theme
         return $template;
     }
 
-    public function theme_page_templates(array $templates) : array {
-        return array_merge($templates, Config::get('APP_TEMPLATES') ?? array());
+    public function theme_page_templates(array $templates): array
+    {
+        return array_merge($templates, Config::get('APP_TEMPLATES') ?? []);
     }
 
     public function admin_head(): void
