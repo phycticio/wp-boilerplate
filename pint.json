@@ -5,6 +5,7 @@
 		"web/content/mu-plugins/bedrock-disallow-indexing",
 		"web/content/plugins",
 		"web/content/languages",
-		"web/content/themes/theme/dist"
+		"web/content/themes/theme/dist",
+		"web/content/themes/theme/blocks"
 	]
 }
