@@ -16,7 +16,7 @@ class Gutenberg
 
     public function after_setup_theme(): void
     {
-        remove_theme_support('core-block-patterns');
+        //        remove_theme_support('core-block-patterns');
         flush_rewrite_rules();
     }
 
