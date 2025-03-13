@@ -1,5 +1,3 @@
-Aquí tienes un README.md profesional para tu proyecto. He estructurado la información técnica de forma clara y destacado las características principales:
-
 # WordPress Boilerplate Modern Stack
 
 [![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
