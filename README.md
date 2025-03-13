@@ -1,6 +1,6 @@
 # WordPress Boilerplate Modern Stack
 
-[![License](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-8892BF.svg)](https://php.net/)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-0073aa.svg)](https://wordpress.org/)
 
