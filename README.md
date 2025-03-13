@@ -10,20 +10,20 @@ Plantilla moderna para desarrollo WordPress con arquitectura escalable y stack t
 
 - 🚀 **Stack Moderno**: PHP 8.1+, Node 18+, Composer 2+, pnpm
 - 🧩 **Gestión de Dependencias**: 
-  - Plugins manejados via Composer
-  - Assets con Webpack 5 y ES6+
+    - Plugins manejados via Composer
+    - Assets con Webpack 5 y ES6+
 - 🧱 **Block Theme**:
-  - Bloques nativos con React
-  - Full Site Editing (FSE)
-  - Integración frontend/backend total
+    - Bloques nativos con React
+    - Full Site Editing (FSE)
+    - Integración frontend/backend total
 - 📐 **Arquitectura Limpia**:
-  - Patrón MVC con Twig templating
-  - Configuración por ambientes
-  - Separación clara de responsabilidades
+    - Patrón MVC con Twig templating
+    - Configuración por ambientes
+    - Separación clara de responsabilidades
 - ⚙️ **Flujo Profesional**:
-  - GitHub Actions integrado
-  - PHP Code Standards (Pint)
-  - Webpack multi-entorno
+    - GitHub Actions integrado
+    - PHP Code Standards (Pint)
+    - Webpack multi-entorno
 
 ## Requisitos Previos
 
@@ -45,19 +45,21 @@ pnpm run build
 ## Configuración
 
 ### Entornos
+
 1. Edita `.env` con tus variables
 2. Configura ambientes en `config/environments/`
     - `development.php`: Config local
     - `production.php`: Config producción
 
 ### Archivos Principales
+
 - `config/application.php`: Configuración compartida
 - `web/wp-config.php`: Bootstrap WordPress
 - `app/App.php`: Inicializador del tema
 
 ## Estructura de Directorios
 
-```
+```text
 wp-boilerplate/
 ├── .github/            # GitHub Actions workflows
 ├── app/                # Lógica de aplicación
@@ -83,6 +85,7 @@ wp-boilerplate/
 ## Desarrollo
 
 ### Comandos Principales
+
 ```bash
 # Instalar dependencias
 pnpm install
@@ -101,11 +104,13 @@ pnpm run format
 ```
 
 ### Creación de Bloques
+
 1. Añade nuevo bloque en `resources/blocks/`
 2. Usa `registerBlockType` de WordPress
 3. Importa estilos/scripts en Webpack config
 
 ### Templates Twig
+
 ```php
 // Ejemplo de uso en WordPress
 View::render('template-name', ['data' => $values]);
