@@ -2,6 +2,10 @@
 
 namespace App\Hooks\User;
 
+/**
+ * Example API class.
+ */
+
 class Api
 {
     public function register_rest_route(): void

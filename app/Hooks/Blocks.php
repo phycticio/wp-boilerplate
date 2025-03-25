@@ -35,19 +35,4 @@ class Blocks
             }
         }
     }
-
-    public static function render($block, $content = '', $is_preview = false): void
-    {
-        $block_name = sanitize_title_with_dashes(str_replace('app/', '', $block['name']));
-        $block_template = $block_name . '.twig';
-
-        $context = Timber::context([
-            'block' => $block,
-            'is_preview' => $is_preview,
-        ]);
-
-        $context = apply_filters('app_before_render_block', $context);
-        $context = apply_filters("app_before_render_block_{$block_name}", $context);
-        Timber::render('@app/blocks/' . $block_template, $context);
-    }
 }
