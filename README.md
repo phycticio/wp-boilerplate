@@ -4,37 +4,37 @@
 [![PHP](https://img.shields.io/badge/PHP-8.1%2B-8892BF.svg)](https://php.net/)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-0073aa.svg)](https://wordpress.org/)
 
-Plantilla moderna para desarrollo WordPress con arquitectura escalable y stack tecnológico actualizado.
+Modern template for WordPress development with scalable architecture and updated technology stack.
 
-## Características Clave
+## Key Features
 
-- 🚀 **Stack Moderno**: PHP 8.1+, Node 18+, Composer 2+, pnpm
-- 🧩 **Gestión de Dependencias**: 
-    - Plugins manejados via Composer
-    - Assets con Webpack 5 y ES6+
+- 🚀 **Modern Stack**: PHP 8.1+, Node 18+, Composer 2+, pnpm
+- 🧩 **Dependency Management**: 
+    - Plugins managed via Composer
+    - Assets with Webpack 5 and ES6+
 - 🧱 **Block Theme**:
-    - Bloques nativos con React
+    - Native blocks with React
     - Full Site Editing (FSE)
-    - Integración frontend/backend total
-- 📐 **Arquitectura Limpia**:
-    - Patrón MVC con Twig templating
-    - Configuración por ambientes
-    - Separación clara de responsabilidades
-- ⚙️ **Flujo Profesional**:
-    - GitHub Actions integrado
+    - Complete frontend/backend integration
+- 📐 **Clean Architecture**:
+    - MVC pattern with Twig templating
+    - Environment-based configuration
+    - Clear separation of responsibilities
+- ⚙️ **Professional Workflow**:
+    - Integrated GitHub Actions
     - PHP Code Standards (Pint)
-    - Webpack multi-entorno
+    - Multi-environment Webpack
 
-## Requisitos Previos
+## Prerequisites
 
 - PHP 8.1+
 - Node.js 18+
 - Composer 2.2+
 - pnpm 8+
 
-## Instalación Rápida
+## Quick Installation
 
-```bash
+```shell
 composer create-project phycticio/wp-boilerplate project-name
 cd project-name
 cp sample.env .env
@@ -42,102 +42,102 @@ pnpm install
 pnpm run build
 ```
 
-## Configuración
+## Configuration
 
-### Entornos
+### Environments
 
-1. Edita `.env` con tus variables
-2. Configura ambientes en `config/environments/`
-    - `development.php`: Config local
-    - `production.php`: Config producción
+1. Edit `.env` with your variables
+2. Configure environments in `config/environments/`
+    - `development.php`: Local config
+    - `production.php`: Production config
 
-### Archivos Principales
+### Main Files
 
-- `config/application.php`: Configuración compartida
-- `web/wp-config.php`: Bootstrap WordPress
-- `app/App.php`: Inicializador del tema
+- `config/application.php`: Shared configuration
+- `web/wp-config.php`: WordPress Bootstrap
+- `app/App.php`: Theme initializer
 
-## Estructura de Directorios
+## Directory Structure
 
 ```text
 wp-boilerplate/
 ├── .github/            # GitHub Actions workflows
-├── app/                # Lógica de aplicación
-│   ├── Features/       # Traits y funcionalidades
+├── app/                # Application logic
+│   ├── Features/       # Traits and functionalities
 │   ├── Hooks/          # WordPress hooks
-│   ├── Services/       # Servicios y DB interactions
-│   └── App.php         # Inicializador principal
-├── config/             # Configuraciones
-│   ├── environments/   # Variables por entorno
-│   ├── application.php # Config base
-│   └── webpack.*.js    # Configuraciones Webpack
-├── resources/          # Assets y templates
-│   ├── blocks/         # Bloques personalizados
+│   ├── Services/       # Services and DB interactions
+│   └── App.php         # Main initializer
+├── config/             # Configurations
+│   ├── environments/   # Environment variables
+│   ├── application.php # Base config
+│   └── webpack.*.js    # Webpack configurations
+├── resources/          # Assets and templates
+│   ├── blocks/         # Custom blocks
 │   ├── scripts/        # JS entry points
-│   ├── scss/           # Estilos globales
-│   └── views/          # Plantillas Twig
+│   ├── scss/           # Global styles
+│   └── views/          # Twig templates
 ├── web/                # Web root
 │   ├── content/        # WP content directory
 │   └── wp/             # Core WordPress
-└── [config files]      # Configuraciones globales
+└── [config files]      # Global configurations
 ```
 
-## Desarrollo
+## Development
 
-### Comandos Principales
+### Main Commands
 
-```bash
-# Instalar dependencias
+```shell
+# Install dependencies
 pnpm install
 
-# Desarrollo con hot-reload
+# Development with hot-reload
 pnpm run dev
 
-# Build producción
+# Production build
 pnpm run build
 
 # Lint PHP
 pnpm run lint
 
-# Formatear código
+# Format code
 pnpm run format
 ```
 
-### Creación de Bloques
+### Block Creation
 
-1. Añade nuevo bloque en `resources/blocks/`
-2. Usa `registerBlockType` de WordPress
-3. Importa estilos/scripts en Webpack config
+1. Add new block in `resources/blocks/`
+2. Use WordPress `registerBlockType`
+3. Import styles/scripts in Webpack config
 
-### Templates Twig
+### Twig Templates
 
 ```php
-// Ejemplo de uso en WordPress
+// Example usage in WordPress
 View::render('template-name', ['data' => $values]);
 ```
 
-## Workflow GitHub Actions
+## GitHub Actions Workflow
 
-- **Lint**: Verificación de código PHP/JS
-- **Build**: Compilación de assets
-- **Deploy**: Configurable para distintos ambientes
+- **Lint**: PHP/JS code verification
+- **Build**: Asset compilation
+- **Deploy**: Configurable for different environments
 
 ## Coding Standards
 
-- PHP: PHP-CS-Fixer (config en `pint.json`)
-- JS: ESLint con config estándar
-- Estilos: SCSS con estructura SMACSS
+- PHP: PHP-CS-Fixer (config in `pint.json`)
+- JS: ESLint with standard config
+- Styles: SCSS with SMACSS structure
 
-## Contribución
+## Contribution
 
-1. Haz fork del proyecto
-2. Crea feature branch (`feat/my-feature`)
-3. Envía Pull Request
+1. Fork the project
+2. Create feature branch (`feat/my-feature`)
+3. Submit Pull Request
 
-## Licencia
+## License
 
-GPL-3.0. Ver [LICENSE](LICENSE) para detalles.
+GPL-3.0. See [LICENSE](LICENSE) for details.
 
 ## Changelog
 
-Ver [CHANGELOG.md](CHANGELOG.md) para historial de versiones.
+See [CHANGELOG.md](CHANGELOG.md) for version history.
