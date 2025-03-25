@@ -2,7 +2,11 @@ name: Build application
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - '**'
+    branches-ignore:
+      - 'main'
+      - 'dev'
 
 jobs:
   web-deploy:
