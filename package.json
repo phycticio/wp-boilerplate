@@ -56,7 +56,7 @@
 		"translate:js": "wp i18n make-pot . $(pwd)/web/content/languages/app.pot --include=\"$(pwd)/resources/**/*.js\"",
 		"translate:pot": "wp i18n make-pot . $(pwd)/web/content/languages/app.pot --include=\"$(pwd)/resources/**/*\"",
 		"format": "wp-scripts format",
-		"lint": "pnpm lint:css --fix && pnpm lint:js --fix && pnpm lint:md:docs --fix && pnpm lint:pkg-json --fix && composer run lint:fix",
+		"lint": "pnpm lint:css && pnpm lint:js && pnpm lint:md:docs && pnpm lint:pkg-json && composer run lint",
 		"lint:css": "wp-scripts lint-style 'resources/**/*.scss'",
 		"lint:js": "wp-scripts lint-js 'resources/**/*.js'",
 		"lint:md:docs": "wp-scripts lint-md-docs",

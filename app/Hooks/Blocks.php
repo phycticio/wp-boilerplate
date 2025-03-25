@@ -2,8 +2,6 @@
 
 namespace App\Hooks;
 
-use Timber\Timber;
-
 class Blocks
 {
     public function init(): void
